@@ -17,33 +17,34 @@
   </div>
 
   <app-home-intro-below-search *ngIf="shouldShowHomeIntro" />
-
+  <div class="w-full p-4 pt-4" *ngIf="Settings.filtering.showFilterPanel">
+    <div class="sticky top-0">
+      <app-filter-options />
+    </div>
+  </div>
+  <p class="text-xl mb-4 font-bold">
+    <span *ngIf="search.isLoading.value" class="loading loading-spinner">
+    </span>
+    <span *ngIf="!search.isLoading.value && !details.isShowing">{{
+      numberOfHitsStr
+    }}</span>
+  </p>
+  <div class="flex h-screen">
+    <!-- Filter Column -->
+    <div
+      class="w-1/6 p-4"
+      *ngIf="viewModes.current.value === ViewMode.List && Settings.filtering.showFilterPanel"
+    >
+      <div class="sticky top-0">
+        some filters here
+      </div>
+    </div>
   <div
-    class="p-4 overflow-y-scroll flex-grow scroll-smooth"
+    class="overflow-y-scroll flex-grow scroll-smooth"
     [ngClass]="[shouldShowHomeIntro ? 'hidden' : '']"
     #scrollContainer
   >
-    <div class="w-full" *ngIf="Settings.filtering.showFilterPanel">
-      <div class="sticky top-0">
-        <app-filter-options />
-      </div>
-    </div>
-
-    <div>
-      <p class="text-xl mb-4 font-bold">
-        <span *ngIf="search.isLoading.value" class="loading loading-spinner">
-        </span>
-        <span *ngIf="!search.isLoading.value && !details.isShowing">{{
-          numberOfHitsStr
-        }}</span>
-      </p>
-      <!--    TODO: Bring back masonry grid-->
-      <!--    <app-nodes-masonry-grid-->
-      <!--      [nodes]="search.results.value.nodes"-->
-      <!--      *ngIf="viewModes.current.value === ViewMode.Grid"-->
-      <!--      class="w-full"-->
-      <!--    />-->
-
+   
       <app-nodes-grid
         [nodes]="search.results.value.nodes"
         *ngIf="viewModes.current.value === ViewMode.Grid"
@@ -59,7 +60,7 @@
           ></app-node>
         </ng-container>
       </ng-container>
-    </div>
+
 
     <div *ngIf="!details.isShowing">
       <button
@@ -78,5 +79,6 @@
       </button>
     </div>
   </div>
+  </div> 
   <app-message />
 </app-view-container>
