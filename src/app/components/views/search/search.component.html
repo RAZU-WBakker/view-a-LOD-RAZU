@@ -33,18 +33,21 @@
     <!-- Filter Column -->
     <div
       class="w-1/6 p-4"
-      *ngIf="viewModes.current.value === ViewMode.List && Settings.filtering.showFilterPanel"
+      *ngIf="
+        viewModes.current.value === ViewMode.List &&
+        Settings.filtering.showFilterPanel
+      "
     >
       <div class="sticky top-0">
-        some filters here
+        <div class="pb-4">Periode</div>
+        <app-multi-range></app-multi-range>
       </div>
     </div>
-  <div
-    class="overflow-y-scroll flex-grow scroll-smooth"
-    [ngClass]="[shouldShowHomeIntro ? 'hidden' : '']"
-    #scrollContainer
-  >
-   
+    <div
+      class="overflow-y-scroll flex-grow scroll-smooth"
+      [ngClass]="[shouldShowHomeIntro ? 'hidden' : '']"
+      #scrollContainer
+    >
       <app-nodes-grid
         [nodes]="search.results.value.nodes"
         *ngIf="viewModes.current.value === ViewMode.Grid"
@@ -61,24 +64,23 @@
         </ng-container>
       </ng-container>
 
-
-    <div *ngIf="!details.isShowing">
-      <button
-        class="btn btn-primary"
-        (click)="loadMore()"
-        [disabled]="search.isLoading.value"
-        *ngIf="search.hasResults"
-      >
-        <span
-          class="loading loading-spinner loading-xs"
-          *ngIf="search.isLoading.value"
-        ></span>
-        <ng-container *transloco="let translateInPlace">{{
-          translateInPlace("RESULTS_LOAD_MORE")
-        }}</ng-container>
-      </button>
+      <div *ngIf="!details.isShowing">
+        <button
+          class="btn btn-primary"
+          (click)="loadMore()"
+          [disabled]="search.isLoading.value"
+          *ngIf="search.hasResults"
+        >
+          <span
+            class="loading loading-spinner loading-xs"
+            *ngIf="search.isLoading.value"
+          ></span>
+          <ng-container *transloco="let translateInPlace">{{
+            translateInPlace("RESULTS_LOAD_MORE")
+          }}</ng-container>
+        </button>
+      </div>
     </div>
   </div>
-  </div> 
   <app-message />
 </app-view-container>

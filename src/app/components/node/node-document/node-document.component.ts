@@ -15,6 +15,7 @@ import { PdfViewerModule, PDFProgressData } from 'ng2-pdf-viewer';
 import { MessageService } from '../../../services/message.service';
 import { featherEye, featherEyeOff } from '@ng-icons/feather-icons';
 import { TranslocoModule } from '@jsverse/transloco';
+import { UniversalViewer } from 'universalviewer/dist/cjs/UniversalViewer';
 
 @Component({
   selector: 'app-node-document',

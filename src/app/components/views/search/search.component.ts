@@ -41,6 +41,7 @@ import { LangSelectComponent } from '../../lang-select/lang-select.component';
 import { TranslocoModule } from '@jsverse/transloco';
 import { translate } from '@jsverse/transloco';
 import { NodeDocumentComponent } from '../../node/node-document/node-document.component';
+import { MultiRangeSliderComponent } from '../../filters/multi-range/multi-range.component';
 
 @Component({
   selector: 'app-search',
@@ -70,7 +71,8 @@ import { NodeDocumentComponent } from '../../node/node-document/node-document.co
     LangSelectComponent,
     TranslocoModule,
     NodeDocumentComponent,
-  ],
+    MultiRangeSliderComponent
+],
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss',
 })
